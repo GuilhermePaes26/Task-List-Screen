@@ -1,6 +1,12 @@
+## Demo Video
+
+Check out a quick demo of the app here: [https://www.youtube.com/shorts/HtPNqZvxRhg](https://www.youtube.com/shorts/HtPNqZvxRhg)
+
+---
+
 # My Work — React Native (Expo)
 
-Um aplicativo móvel para organizar itens de trabalho pessoais, construído com React Native (Expo) e TypeScript. Este projeto foca em um design coeso, interações responsivas e persistência local confiável.
+A mobile application to organize personal work items, built with React Native (Expo) and TypeScript. This project focuses on cohesive design, responsive interactions, and reliable local persistence.
 
 <p align="center">
   <img alt="Expo" src="https://img.shields.io/badge/Expo-RN-blueviolet?style=flat" />
@@ -9,100 +15,100 @@ Um aplicativo móvel para organizar itens de trabalho pessoais, construído com 
   <img alt="Storage" src="https://img.shields.io/badge/Storage-AsyncStorage-informational?style=flat" />
 </p>
 
-**Tempo gasto:** ~2h40m
+**Time spent:** ~2h40m
 
 ---
 
-## Sumário
+## Table of Contents
 
-- [Visão Geral](#visão-geral)
-- [Destaques](#destaques)
-- [Pilha Tecnológica](#pilha-tecnológica)
-- [Funcionalidades Implementadas](#funcionalidades-implementadas)
-- [Arquitetura e Decisões](#arquitetura-e-decisões)
-- [Modelo de Dados](#modelo-de-dados)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Estilização e Sistema de Design](#estilização-e-sistema-de-design)
-- [Instalação e Execução](#instalação-e-execução)
-- [Dependências Necessárias](#dependências-necessárias)
-- [Build e Lançamento (Expo EAS)](#build-e-lançamento-expo-eas)
-- [Guia de Uso](#guia-de-uso)
-- [Persistência e Comportamento de Desfazer](#persistência-e-comportamento-de-desfazer)
-- [Regras de Data e Atraso](#regras-de-data-e-atraso)
-- [Acessibilidade e Interação](#acessibilidade-e-interação)
-- [Limitações Conhecidas / Próximos Passos](#limitações-conhecidas--próximos-passos)
-
----
-
-## Visão Geral
-
-Este aplicativo móvel foi desenvolvido para ajudar a organizar tarefas e itens de trabalho pessoais. Utilizando React Native com Expo e TypeScript, o projeto visa oferecer uma experiência de usuário fluida e eficiente, com foco em um design intuitivo, interações responsivas e a capacidade de persistir dados localmente de forma confiável. Ideal para quem busca uma ferramenta simples e eficaz para gerenciar suas atividades diárias.
+- [Overview](#overview)
+- [Highlights](#highlights)
+- [Tech Stack](#tech-stack)
+- [Implemented Features](#implemented-features)
+- [Architecture & Decisions](#architecture--decisions)
+- [Data Model](#data-model)
+- [Project Structure](#project-structure)
+- [Styling & Design System](#styling--design-system)
+- [Installation & Running](#installation--running)
+- [Required Dependencies](#required-dependencies)
+- [Build & Release (Expo EAS)](#build--release-expo-eas)
+- [Usage Walkthrough](#usage-walkthrough)
+- [Persistence & Undo Behavior](#persistence--undo-behavior)
+- [Date & Overdue Rules](#date--overdue-rules)
+- [Accessibility & Interaction](#accessibility--interaction)
+- [Known Limitations / Next Steps](#known-limitations--next-steps)
 
 ---
 
-## Destaques
+## Overview
 
-- Fluxo de conclusão animado com UI otimista.
-- Toast "Desfazer" com botão em formato de pílula e barra de progresso que preenche da esquerda para a direita.
-- Filtros: **Todos**, **Hoje**, **Atrasados**.
-- Abas de não-tarefas exibem uma mensagem centralizada de **Em breve**.
-- Persistência local com **AsyncStorage**.
-- Conjunto de ícones SVG e cabeçalho consistente + abas superiores com indicador animado.
+This mobile application was developed to help organize personal tasks and work items. Built with React Native using Expo and TypeScript, the project aims to offer a fluid and efficient user experience, focusing on intuitive design, responsive interactions, and the ability to reliably persist data locally. Ideal for those looking for a simple and effective tool to manage their daily activities.
 
 ---
 
-## Pilha Tecnológica
+## Highlights
 
-O projeto foi construído utilizando as seguintes tecnologias e bibliotecas:
-
-- **React Native (Expo)**: Framework principal para o desenvolvimento de aplicativos móveis multiplataforma, permitindo a criação de interfaces de usuário ricas e performáticas.
-- **TypeScript**: Superconjunto de JavaScript que adiciona tipagem estática, melhorando a manutenibilidade do código, a detecção de erros em tempo de desenvolvimento e a colaboração em equipes.
-- **Context API**: Utilizada para gerenciamento de estado global, facilitando o compartilhamento de dados entre componentes sem a necessidade de prop drilling.
-- **AsyncStorage**: Solução de armazenamento local assíncrono, persistente e não criptografado para React Native, ideal para guardar dados do usuário offline.
-- **React Native `Animated`**: Biblioteca nativa do React Native para criação de animações fluidas e de alto desempenho, utilizada para micro-animações na interface.
-- **SVGR**: Ferramenta que permite importar arquivos SVG diretamente como componentes React, facilitando a integração de gráficos vetoriais escaláveis e personalizáveis.
+- Animated completion flow with optimistic UI.
+- "Undo" toast with a pill-shaped button and a progress bar that fills from left to right.
+- Filters: **All**, **Today**, **Overdue**.
+- Non-task tabs display a centered **Coming soon** message.
+- Local persistence with **AsyncStorage**.
+- SVG icon set and consistent header + top tabs with an animated indicator.
 
 ---
 
-## Funcionalidades Implementadas
+## Tech Stack
 
-O aplicativo oferece as seguintes funcionalidades principais:
+The project was built using the following technologies and libraries:
 
-- **Cabeçalho**: Exibe uma saudação personalizada, ícones de notificação e um seletor de filtro para as tarefas.
-- **Abas Superiores**: Organiza o conteúdo em diferentes categorias: Tarefas, Lembretes, Reuniões e Notas.
-- **Lista de Tarefas**: Apresenta as tarefas em cartões individuais, cada um contendo:
-  - Um glifo de verificação roxo na parte inicial do corpo do cartão.
-  - Uma linha de metadados com ícones de pasta e calendário.
-  - Um distintivo de "Atrasado" com um ponto vermelho e um rótulo para tarefas vencidas.
-  - Um botão de conclusão no lado direito com uma animação de verificação e um anel expansível.
-- **Fluxo de Conclusão**: Uma experiência interativa para marcar tarefas como concluídas:
-  - Animação de verificação e anel ao completar.
-  - O cartão da tarefa desaparece, desliza para cima e tem sua altura recolhida, fechando o espaço na lista.
-  - Um toast aparece com um botão "Desfazer" e uma barra de progresso.
-  - A opção "Desfazer" restaura a tarefa; o tempo limite do toast a exclui permanentemente do armazenamento.
-- **Filtros**: Permite visualizar as tarefas de diferentes maneiras:
-  - **Todos**: Exibe todas as tarefas ativas.
-  - **Hoje**: Mostra as tarefas com vencimento para o dia atual.
-  - **Atrasados**: Exibe as tarefas ativas que estão vencidas.
-- **Abas de Não-Tarefas**: As abas de Lembretes, Reuniões e Notas exibem uma mensagem de "Em breve" como um placeholder.
+- **React Native (Expo)**: The main framework for developing cross-platform mobile applications, enabling the creation of rich and performant user interfaces.
+- **TypeScript**: A superset of JavaScript that adds static typing, improving code maintainability, error detection during development, and team collaboration.
+- **Context API**: Used for global state management, facilitating data sharing between components without the need for prop drilling.
+- **AsyncStorage**: An asynchronous, persistent, and unencrypted local storage solution for React Native, ideal for storing user data offline.
+- **React Native `Animated`**: A native React Native library for creating fluid and high-performance animations, used for micro-animations in the interface.
+- **SVGR**: A tool that allows importing SVG files directly as React components, facilitating the integration of scalable and customizable vector graphics.
 
 ---
 
-## Arquitetura e Decisões
+## Implemented Features
 
-A arquitetura do projeto foi pensada para modularidade e escalabilidade, com as seguintes decisões chave:
+The application offers the following main functionalities:
 
-- **Componentes Orientados a Funcionalidades**: A interface é dividida em componentes reutilizáveis e focados em funcionalidades específicas, como `Header`, `TabsBar`, `TaskCard`, `Toast`, `AddTaskSheet` e `BottomBar`. Isso promove a separação de preocupações e facilita a manutenção.
-- **Estado Global com `TasksContext`**: O gerenciamento de estado global é centralizado no `TasksContext`, que encapsula as operações de manipulação de tarefas (`addTask`, `markComplete`, `revertComplete`, `deleteTask`, `reorderTasks`). Essa abordagem simplifica o fluxo de dados e garante a consistência do estado em todo o aplicativo.
-- **Conclusão Otimista e Função Desfazer**: Para uma experiência de usuário mais fluida, a conclusão de tarefas é otimista, ou seja, a UI é atualizada imediatamente antes da confirmação da persistência. Um ID de exclusão pendente é mantido em uma referência, permitindo que a função "Desfazer" reverta a conclusão. O tempo limite do toast é responsável por finalizar a exclusão do estado e do armazenamento.
-- **Encapsulamento de Datas**: A lógica de manipulação de datas, incluindo a determinação de "hoje", "amanhã", "ontem" e regras de atraso, é encapsulada em utilitários dedicados. Isso garante consistência e facilita futuras modificações ou internacionalização.
-- **Animações**: As animações são implementadas utilizando o `Animated` do React Native. Para transformações e opacidade, o driver nativo é utilizado para melhor desempenho. No entanto, o recolhimento de altura utiliza um driver não nativo devido a restrições da API, garantindo a funcionalidade mesmo com essa limitação.
+- **Header**: Displays a personalized greeting, notification icons, and a filter selector for tasks.
+- **Top Tabs**: Organizes content into different categories: Tasks, Reminders, Meetings, and Notes.
+- **Task List**: Presents tasks in individual cards, each containing:
+  - A purple check glyph at the beginning of the card body.
+  - A metadata row with folder and calendar icons.
+  - An "Overdue" badge with a red dot and a label for overdue tasks.
+  - A completion button on the right side with a check animation and an expanding ring.
+- **Completion Flow**: An interactive experience for marking tasks as complete:
+  - Check and ring animation upon completion.
+  - The task card fades, slides up, and collapses its height, closing the gap in the list.
+  - A toast appears with an "Undo" button and a progress bar.
+  - The "Undo" option restores the task; the toast timeout permanently deletes it from storage.
+- **Filters**: Allows viewing tasks in different ways:
+  - **All**: Displays all active tasks.
+  - **Today**: Shows tasks due on the current day.
+  - **Overdue**: Displays active tasks that are overdue.
+- **Non-Task Tabs**: The Reminders, Meetings, and Notes tabs display a "Coming soon" message as a placeholder.
 
 ---
 
-## Modelo de Dados
+## Architecture & Decisions
 
-O modelo de dados para uma `Task` é definido da seguinte forma:
+The project's architecture was designed for modularity and scalability, with the following key decisions:
+
+- **Feature-Oriented Components**: The interface is divided into reusable components focused on specific functionalities, such as `Header`, `TabsBar`, `TaskCard`, `Toast`, `AddTaskSheet`, and `BottomBar`. This promotes separation of concerns and facilitates maintenance.
+- **Global State with `TasksContext`**: Global state management is centralized in `TasksContext`, which encapsulates task manipulation operations (`addTask`, `markComplete`, `revertComplete`, `deleteTask`, `reorderTasks`). This approach simplifies data flow and ensures state consistency throughout the application.
+- **Optimistic Completion and Undo Function**: For a smoother user experience, task completion is optimistic, meaning the UI is updated immediately before persistence confirmation. A pending deletion ID is kept in a reference, allowing the "Undo" function to revert completion. The toast timeout is responsible for finalizing the deletion from state and storage.
+- **Date Encapsulation**: Date manipulation logic, including determining "today," "tomorrow," "yesterday," and overdue rules, is encapsulated in dedicated utilities. This ensures consistency and facilitates future modifications or internationalization.
+- **Animations**: Animations are implemented using React Native's `Animated`. For transformations and opacity, the native driver is used for better performance. However, height collapse uses a non-native driver due to API constraints, ensuring functionality even with this limitation.
+
+---
+
+## Data Model
+
+The data model for a `Task` is defined as follows:
 
 ```typescript
 interface Task {
@@ -115,22 +121,22 @@ interface Task {
 }
 ```
 
-- `id`: Identificador único da tarefa (string).
-- `title`: Título da tarefa (string).
-- `context?`: Contexto opcional da tarefa (string).
-- `dueAt?`: Data de vencimento opcional da tarefa (string, formato ISO 8601).
-- `completed`: Booleano indicando se a tarefa foi concluída.
-- `position`: Número para ordenação da tarefa na lista.
+- `id`: Unique task identifier (string).
+- `title`: Task title (string).
+- `context?`: Optional task context (string).
+- `dueAt?`: Optional task due date (string, ISO 8601 format).
+- `completed`: Boolean indicating whether the task has been completed.
+- `position`: Number for task ordering in the list.
 
 ---
 
-## Estrutura do Projeto
+## Project Structure
 
-A estrutura de diretórios do projeto é organizada para promover a modularidade e a clareza:
+The project directory structure is organized to promote modularity and clarity:
 
 ```
 src/
-  components/         # Componentes reutilizáveis da UI
+  components/         # Reusable UI components
     Header.tsx
     TabsBar.tsx
     TaskCard.tsx
@@ -138,15 +144,15 @@ src/
     FAB.tsx
     AddTaskSheet.tsx
     BottomBar.tsx
-  context/            # Contextos React para gerenciamento de estado global
+  context/            # React contexts for global state management
     TasksContext.tsx
-  screens/            # Telas principais do aplicativo
+  screens/            # Main application screens
     MyWorkScreen.tsx
-  theme/              # Definições de tema, como cores
+  theme/              # Theme definitions, such as colors
     colors.ts
-  utils/              # Funções utilitárias e helpers
+  utils/              # Utility functions and helpers
     date.ts
-assets/               # Ativos estáticos, como ícones SVG
+assets/               # Static assets, such as SVG icons
   home.svg
   work.svg
   insights.svg
@@ -161,45 +167,45 @@ assets/               # Ativos estáticos, como ícones SVG
 
 ---
 
-## Estilização e Sistema de Design
+## Styling & Design System
 
-O projeto segue um sistema de design para garantir consistência visual e facilidade de manutenção:
+The project follows a design system to ensure visual consistency and ease of maintenance:
 
-- **Paleta de Cores Centralizada**: Todas as cores são definidas em uma paleta centralizada (`theme/colors.ts`), facilitando alterações globais e garantindo a consistência da marca.
-- **Ícones SVG**: Os ícones são armazenados como arquivos SVG em `assets/` e dimensionados conforme a necessidade em cada componente, garantindo escalabilidade e nitidez em diferentes resoluções.
-- **Abas Superiores**: O indicador das abas superiores é alinhado à largura do rótulo e posicionado acima do divisor, proporcionando uma navegação clara e visualmente agradável.
-- **Botão de Conclusão**: O botão de conclusão possui um fundo verde, uma borda fina e um ícone de verificação na cor da marca, oferecendo um feedback visual claro ao usuário.
+- **Centralized Color Palette**: All colors are defined in a centralized palette (`theme/colors.ts`), facilitating global changes and ensuring brand consistency.
+- **SVG Icons**: Icons are stored as SVG files in `assets/` and sized as needed in each component, ensuring scalability and sharpness at different resolutions.
+- **Top Tabs**: The top tabs indicator is aligned with the label width and positioned above the divider, providing clear and visually appealing navigation.
+- **Completion Button**: The completion button has a green background, a thin border, and a brand-colored check icon, offering clear visual feedback to the user.
 
 ---
 
-## Instalação e Execução
+## Installation & Running
 
-Para configurar e executar o projeto localmente, siga os passos abaixo:
+To set up and run the project locally, follow the steps below:
 
-1.  **Clone o repositório:**
+1.  **Clone the repository:**
     ```bash
-    git clone <URL_DO_REPOSITORIO>
+    git clone <REPOSITORY_URL>
     cd my-work-app
     ```
-2.  **Instale as dependências:**
+2.  **Install dependencies:**
     ```bash
     npm install
     ```
-3.  **Inicie o aplicativo Expo:**
+3.  **Start the Expo application:**
     ```bash
     expo start
     ```
-    Isso abrirá o Metro Bundler no seu navegador. Você pode escanear o código QR com o aplicativo Expo Go no seu dispositivo móvel ou usar um emulador.
+    This will open the Metro Bundler in your browser. You can scan the QR code with the Expo Go app on your mobile device or use an emulator.
 
 ---
 
-## Dependências Necessárias
+## Required Dependencies
 
-Certifique-se de ter as seguintes dependências instaladas:
+Make sure you have the following dependencies installed:
 
-- `@react-native-async-storage/async-storage`: Para persistência de dados local.
+- `@react-native-async-storage/async-storage`: For local data persistence.
 
-Para instalar, execute:
+To install, run:
 
 ```bash
 expo install @react-native-async-storage/async-storage
@@ -207,98 +213,98 @@ expo install @react-native-async-storage/async-storage
 
 ---
 
-## Build e Lançamento (Expo EAS)
+## Build & Release (Expo EAS)
 
-Para construir e lançar o aplicativo usando Expo Application Services (EAS):
+To build and release the application using Expo Application Services (EAS):
 
-1.  **Instale a CLI do EAS globalmente:**
+1.  **Install the EAS CLI globally:**
     ```bash
     npm install -g eas-cli
     ```
-2.  **Faça login no EAS:**
+2.  **Log in to EAS:**
     ```bash
     eas login
     ```
-3.  **Configure o projeto EAS:**
+3.  **Configure the EAS project:**
 
     ```bash
     eas init
     ```
 
-    Siga as instruções no terminal para configurar seu projeto EAS. Isso criará um arquivo `eas.json`.
+    Follow the instructions in the terminal to configure your EAS project. This will create an `eas.json` file.
 
-4.  **Construa o aplicativo:**
+4.  **Build the application:**
     ```bash
-    eas build -p android # para Android
-    eas build -p ios    # para iOS
+    eas build -p android # for Android
+    eas build -p ios    # for iOS
     ```
-    Ou para ambas as plataformas:
+    Or for both platforms:
     ```bash
     eas build
     ```
 
 ---
 
-## Guia de Uso
+## Usage Walkthrough
 
-Siga este guia para entender como usar o aplicativo:
+Follow this guide to understand how to use the application:
 
-1.  **Abrir o aplicativo**: Ao iniciar, a aba padrão é "Tarefas".
-2.  **Adicionar uma tarefa**: Toque no botão `+` para adicionar uma nova tarefa. Você pode definir um contexto opcional e uma data/hora de vencimento.
-3.  **Completar uma tarefa**: Toque no botão verde para marcar uma tarefa como concluída.
-    - Uma animação de verificação e anel aparecerá, e o cartão da tarefa desaparecerá e se recolherá.
-    - Um "Toast" será exibido com a opção "Desfazer". Toque para restaurar a tarefa ou aguarde o tempo limite para que ela seja excluída permanentemente.
-4.  **Filtrar tarefas**: Use o menu de filtro para alternar entre "Todos", "Hoje" e "Atrasados".
-5.  **Navegar entre abas**: Alterne entre as abas superiores. As abas de não-tarefas (Lembretes, Reuniões, Notas) exibirão a mensagem "Em breve".
-
----
-
-## Persistência e Comportamento de Desfazer
-
-- Todas as mutações de dados são persistidas no `AsyncStorage` sob uma única chave, garantindo que o estado do aplicativo seja salvo de forma consistente.
-- Ao completar uma tarefa, a propriedade `completed` é definida como `true`.
-- A função "Desfazer" (ativada antes do tempo limite do toast) redefine `completed` para `false`, restaurando a tarefa.
-- Após o tempo limite do toast, a tarefa é permanentemente excluída e as posições das tarefas restantes são reindexadas para manter a ordem.
+1.  **Open the app**: Upon launch, the default tab is "Tasks."
+2.  **Add a task**: Tap the `+` button to add a new task. You can set an optional context and a due date/time.
+3.  **Complete a task**: Tap the green button to mark a task as complete.
+    - A check and ring animation will appear, and the task card will fade and collapse.
+    - A "Toast" will be displayed with the "Undo" option. Tap to restore the task or wait for the timeout for it to be permanently deleted.
+4.  **Filter tasks**: Use the filter menu to switch between "All," "Today," and "Overdue."
+5.  **Navigate between tabs**: Switch between the top tabs. Non-task tabs (Reminders, Meetings, Notes) will display the "Coming soon" message.
 
 ---
 
-## Regras de Data e Atraso
+## Persistence & Undo Behavior
 
-- **Hoje**: Uma tarefa é considerada "Hoje" se sua data de vencimento for igual à data local atual.
-- **Atrasado**: Uma tarefa é marcada como "Atrasada" se sua data de vencimento for anterior à data e hora atuais e ela ainda não estiver concluída.
-- **UI**: A interface do usuário exibe um distintivo "Atrasado" com um ponto vermelho e um rótulo na linha de metadados do cartão da tarefa, alertando visualmente o usuário.
-
----
-
-## Acessibilidade e Interação
-
-O aplicativo foi projetado com foco na acessibilidade e em interações intuitivas:
-
-- **Área de Toque Mínima**: Ícones de cabeçalho e filtros possuem uma área de toque mínima para facilitar a interação, especialmente em dispositivos móveis.
-- **Feedback Visual**: Feedback de pressão com transformações sutis é fornecido para indicar interações do usuário.
-- **Remoção Animada**: A remoção animada de tarefas preserva o contexto visual e a posição de rolagem, proporcionando uma experiência de usuário suave e contínua.
+- All data mutations are persisted to `AsyncStorage` under a single key, ensuring that the application state is saved consistently.
+- When completing a task, the `completed` property is set to `true`.
+- The "Undo" function (activated before the toast timeout) resets `completed` to `false`, restoring the task.
+- After the toast timeout, the task is permanently deleted, and the positions of the remaining tasks are reindexed to maintain order.
 
 ---
 
-## Limitações Conhecidas / Próximos Passos
+## Date & Overdue Rules
 
-Algumas limitações e possíveis melhorias futuras incluem:
-
-- **Reordenação por Arrastar**: A funcionalidade de reordenação de tarefas por arrastar e soltar pode ser implementada utilizando bibliotecas como `react-native-reanimated` ou `draggable-flatlist`.
-- **Seletores de Data/Hora Nativos**: Substituir os inputs ISO atuais por seletores de data e hora nativos do sistema operacional para uma melhor experiência do usuário.
-- **Internacionalização e Fusos Horários**: Considerar o uso de bibliotecas como `date-fns` ou `luxon` para melhor suporte à internacionalização (i18n) e manipulação de fusos horários.
-- **Testes Abrangentes**: Adicionar testes unitários e de integração para utilitários de data, ações de contexto e a presença de animações, garantindo a robustez e a confiabilidade do aplicativo.
+- **Today**: A task is considered "Today" if its due date is equal to the current local date.
+- **Overdue**: A task is marked as "Overdue" if its due date is earlier than the current date and time and it is not yet completed.
+- **UI**: The user interface displays an "Overdue" badge with a red dot and a label in the task card's metadata row, visually alerting the user.
 
 ---
 
-### Contribuição
+## Accessibility & Interaction
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests.
+The application was designed with a focus on accessibility and intuitive interactions:
 
-### Licença
-
-Este projeto está licenciado sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+- **Minimum Hit Area**: Header icons and filters have a minimum hit area to facilitate interaction, especially on mobile devices.
+- **Visual Feedback**: Press feedback with subtle transforms is provided to indicate user interactions.
+- **Animated Removal**: The animated removal of tasks preserves visual context and scroll position, providing a smooth and continuous user experience.
 
 ---
 
-**Desenvolvido por Manus AI**
+## Known Limitations / Next Steps
+
+Some known limitations and potential future improvements include:
+
+- **Drag Reordering**: The drag-and-drop task reordering functionality can be implemented using libraries such as `react-native-reanimated` or `draggable-flatlist`.
+- **Native Date/Time Pickers**: Replace current ISO inputs with native operating system date and time pickers for a better user experience.
+- **Internationalization and Time Zones**: Consider using libraries like `date-fns` or `luxon` for better internationalization (i18n) and time zone handling support.
+- **Comprehensive Tests**: Add unit and integration tests for date utilities, context actions, and animation presence, ensuring the application's robustness and reliability.
+
+---
+
+### Contribution
+
+Contributions are welcome! Feel free to open issues or pull requests.
+
+### License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
+
+---
+
+**Developed by Manus AI**
